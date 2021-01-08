@@ -1,0 +1,48 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+{% block contenido %}
+<html>
+ 
+<div class="contenedorFormulario" class="table-responsive">
+    
+    
+{% if partidos %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Partidos</th>
+            </tr>        
+        </thead>
+
+        {% for e in partidos %}
+            <tbody> 
+            {% if e.campo == "Casa" %}             
+                <td><a>Jornada {{ e.n_jornada }}. {{ e.equipo|upper }} {{ e.resultado_equipo }} - {{ e.resultado_rival }} {{ e.rival|upper }}  </a></td>
+            {% else %} 
+            <td><a>Jornada {{ e.n_jornada }}. {{ e.rival|upper }} {{ e.resultado_rival }} - {{ e.resultado_equipo }} {{ e.equipo|upper }} </a></td> 
+            {% endif %}
+            <td><button type="button" class="btn btn-light"><a href="/est_equipo/{{ e.id }}" style="color: black;">Datos del partido</a></button></td>
+            
+        {% endfor %}
+            </tbody>      
+        <tfoot><button type="button" class="btn btn-light"><a href="/crear_partido" style="color: black;">Crear Partido</a></button></tfoot>    
+      
+    </table>
+
+{% else %}
+<tfoot><button type="button" class="btn btn-light"><a href="/crear_partido" style="color: black;">Crear Partido</a></button></tfoot>
+<h1 style="color: rgb(15, 7, 1); text-align: center;">Este equipo todavia no ha jugado ningún partido</h1>
+
+{% endif %}
+        
+
+
+     </div>
+    </table>
+
+
+
+</html>
+{% endblock contenido %}

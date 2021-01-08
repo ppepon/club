@@ -1,0 +1,96 @@
+<html>
+
+<head>
+
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mio2.css' %}" rel="stylesheet">
+
+    
+
+     <!-- Fonts -->
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     
+
+    <!-- Styles -->
+    <!-- <link href="{% static 'users/css/gestion.css' %}" rel="stylesheet"> -->
+</head>
+
+<body>
+  {% if user.is_authenticated %}
+      
+  <li style="text-align: right;">
+    <a href="{% url 'logout' %}" style="color: rgb(12, 6, 1);" >cerrar sesión {{request.user.username.capitalize}}</a> 
+  </li>
+  {% else %}
+  <li>
+    <a ></a> 
+  </li>
+  {% endif %}
+  
+ 
+{% block barra %}   
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!---<li class="navbar-brand {% if request.path == '/jugadores/' %}active{% endif %} px-lg-4">
+        <a class="nav-link" href="/jugadores">Jugadores<span class="sr-only">(current)</span></a>
+      </li>-->
+      <!---<li class="navbar-brand {% if request.path == '/crear_jugador/' %}active{% endif %} px-lg-4">
+        <a class="nav-link" href="/crear_jugador">Crear Jugador<span class="sr-only">(current)</span></a>
+      </li>-->
+      <li class="navbar-brand {% if request.path == '/equipos/' %}active{% endif %} px-lg-4">
+        <a class="nav-link" href="/equipos">Equipos<span class="sr-only">(current)</span></a>
+      </li>
+      {% if perms.ClubFutbolApp.add_equipo %}
+      <li class="navbar-brand {% if request.path == '/crear_equipo/' %}active{% endif %} px-lg-4">
+        <a class="nav-link" href="/crear_equipo">Crear Equipo<span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+      
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  {% endblock barra %}
+ 
+
+ {% block content %}
+
+ {% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        
+        
+        <p class="m-0 mbt1">&copy; ClubFutbolApp</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'ClubFutbolApp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'ClubFutbolApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>

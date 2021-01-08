@@ -1,0 +1,32 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+
+{% block contenido %}
+
+<div class="container">
+<div class="contenedorFormulario" class="table-responsive">
+    <form enctype="multipart/form-data" method="POST">
+        <table class="table table-hover">
+            <tr>
+                <td>Campo:</td> <td>{{ form.campo }}</td>
+            </tr>
+            <tr><td>Fecha:</td> <td>{{ form.fecha }}</td></tr>
+            <tr><td>Jornada:</td> <td>{{ form.n_jornada }}</td></tr>
+            <th colspan="2">Resultado:</th>
+            <tr><td>{{ form.equipo }}</td><td>{{ form.resultado_equipo }}</td></tr>
+            <tr><td>{{ form.rival }}</td><td>{{ form.resultado_rival }}</td></tr>
+            
+        {% csrf_token %}
+    </table>
+    
+    
+    <button type="submit" style="cursor: pointer;" class="btn btn-light">Crear/Editar</button>
+    <button type="submit" style="cursor: pointer; " class="btn btn-light"><a href= "/equipos" style="color: rgb(8, 4, 0);">Cancelar</a></button>
+</form>
+</div>
+</div>
+
+
+
+{% endblock %}

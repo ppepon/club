@@ -1,0 +1,85 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+
+<!DOCTYPE html>
+{% block contenido %}
+<html>
+ 
+<div class="contenedorFormulario" class="table-responsive" >
+  
+{% if datospartidos %}
+<table class="table table-hover">
+    <thead>
+        <th style="color: rgb(10, 5, 1); align-content: right;">
+            {% for datospartido in datospartidos %}
+                {% if forloop.first %}
+                    {{ datospartido.jugador_convocado.dorsal }}-
+                    {{ datospartido.jugador_convocado|upper }}
+                    <td><button class="btn btn-light"><a href="/crear_est_partido/" style="color: rgb(14, 8, 1);">Introducir datos partido</a></button></td>
+                    
+                {% endif %}
+            {% endfor %}
+        </th>
+        <tr>
+            
+            <th>Partido</th>
+            <th>Min. Jugados</th>
+            <th>Titular</th>
+            <th>Goles</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for datospartido in datospartidos %}
+            
+            <tr>
+                {% if datospartido.partido.campo == "Casa" %}             
+                    <td><a>{{ datospartido.partido.equipo|upper }} {{ datospartido.partido.resultado_equipo }} - {{ datospartido.partido.resultado_rival }} {{ datospartido.partido.rival|upper }}  </a></td>
+                {% else %} 
+                    <td><a>{{ datospartido.partido.rival|upper }} {{ datospartido.partido.resultado_rival }} - {{ datospartido.partido.resultado_equipo }} {{ datospartido.partido.equipo|upper }} </a></td> 
+                {% endif %}
+                
+                <td >{{ datospartido.minutos_jugados }} </td>
+                
+                    {% if datospartido.titular == True %}
+                        <td>Si</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+                <td >{{ datospartido.goles }} </td>
+                
+                <tr>
+                    
+                    {% if forloop.first %}
+                        {% if datospartido.jugador_convocado.image %}
+                            <img src="{{ datospartido.jugador_convocado.image.url }}" style="max-width: 100px;"> 
+                        {% else %}
+                        <img src="{% static 'noImagen.jpg' %}" style="max-width: 100px;"> 
+                        {% endif %}
+                    {% endif %}
+                </tr>
+                   
+            </tr>
+
+        {% endfor %}
+           
+    </tbody>
+</table>
+
+{% else %}
+<td><button class="btn btn-light"><a href="/crear_est_partido" style="color: rgb(14, 8, 1);">Introducir datos partido</a></button></td>
+<table class="contenedorFormulario" class="table table-hover">
+<th style="color: rgb(15, 7, 1);text-align: center;" >Este jugador no tiene todavía estadisticas</th>
+</table>
+{% endif %}
+        </div>
+
+     </div>
+    </table>
+     
+</div>
+
+</html>
+{% endblock contenido %}

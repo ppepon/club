@@ -1,0 +1,65 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+{% block contenido %}
+<html>
+ 
+<div class="contenedorFormulario" class="table-responsive">
+    
+    
+{% if datospartidos %}
+    <table class="table table-hover">
+        <thead>
+            <th style="color: rgb(8, 4, 1); height: 60px ; width: 50%;" class="col-xs-12 col-md-8" >
+                {% for datospartido in datospartidos %}
+                    {% if forloop.first %}
+                        <a>{{ datospartido.partido.equipo|upper }} contra
+                        {{ datospartido.partido.rival|upper }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </th>
+            <tr>
+            
+                <th>Jugadores</th>
+                <th>Titular</th>
+                <th>Min. Jugados</th>
+                <th>Goles</th>
+            
+            </tr>
+        </thead>
+    <tbody>
+        
+        {% for datospartido in datospartidos %}
+            
+            <tr>
+            
+                <td width="25%">{{ datospartido.jugador_convocado.jug_nombre }} </td>
+                {% if datospartido.titular == True %}
+                        <td>Si</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+                <td width="25%">{{ datospartido.minutos_jugados }} </td>
+                <td >{{ datospartido.goles }} </td>
+                
+            </tr>
+
+        {% endfor %}
+           
+    </tbody>
+    </table>
+
+{% else %}
+<h1 style="color: rgb(15, 7, 1); text-align: center;">Este equipo todavia no ha jugado ningún partido</h1>
+{% endif %}
+        </div>
+
+     </div>
+    </table>
+     
+</div>
+
+</html>
+{% endblock contenido %}

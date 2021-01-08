@@ -1,0 +1,23 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+
+{% block contenido %}
+
+
+<div class="container">
+    <div class="contenedorFormulario" class="table-responsive">
+    <form  enctype="multipart/form-data"  method="POST">
+        <table>{{ form }}</table>
+        {% csrf_token %}
+   
+    
+    
+    <button type="submit" style="cursor: pointer;" class="btn btn-light">Crear/Editar</button>
+    <button type="submit" style="cursor: pointer; " class="btn btn-light"><a href= "/equipos" style="color: rgb(17, 11, 6);">Cancelar</a></button>
+</form>
+</div>
+</div>  
+
+
+{% endblock %}

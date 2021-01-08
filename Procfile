@@ -1,0 +1,1 @@
+web: gunicorn ClubFutbol.wsgi --log-file -

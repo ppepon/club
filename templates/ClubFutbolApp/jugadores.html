@@ -1,0 +1,59 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+
+<!DOCTYPE html>
+{% block contenido %}
+
+
+<html>
+ 
+<div class="contenedorFormulario" class="table-responsive">
+    
+         <table class="table table-hover">
+            <thead> 
+              <th><button type="button" class="btn btn-light"><a href="/crear_jugador" style="color: black;">Crear Jugador</a></button></th> 
+              <th style="color: rgb(10, 5, 1); align-content: right;">
+                {% for e in jugadores %}
+                    {% if forloop.first %}
+                        {{ e.equipo|upper }}
+                    {% endif %}
+                {% endfor %}
+                </th>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Dorsal</th>
+                    <th scope="col">Posición</th>
+                   
+                    <th scope="col">Foto</th>
+                    <th scope="col">Datos</th>
+
+                </tr>
+            </thead>
+        {% for j in jugadores %}
+            <tbody>
+                <tr>
+                    <td>{{ j.jug_nombre }}</td>
+                    <td>{{ j.dorsal }}</td>
+                    <td>{{ j.posicion }}</td>
+                    
+                    {% if j.image %}
+                        <td><img src="{{ j.image.url }}" style="max-width: 60px;"></td>
+                    {% else %}
+                        <td><img src="{% static 'noImagen.jpg' %}" style="max-width: 100px;"></td>
+                    {% endif %}
+                    <td><button class="btn btn-light"><a href="/est_jugadores/{{ j.id }}" style="color: rgb(14, 8, 1);">Estadisticas</a></button></td>
+                    <!--<td><a href="/est_equipo/{{ j.equipo_id }}" style="color: rgb(14, 8, 1);">Estadistica equipo</a></td>-->
+                    
+           
+
+                </tr>
+            </tbody>
+        {% endfor %}
+     
+    </table>
+     
+</div>
+
+</html>
+{% endblock contenido %}

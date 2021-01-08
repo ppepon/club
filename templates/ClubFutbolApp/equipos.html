@@ -1,0 +1,43 @@
+{% extends "ClubFutbolApp/Home.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<html>
+
+<div class="contenedorFormulario" class="table-responsive" class="hero-container" data-aos="fade-in">
+    
+         <table class="table table-hover">
+            <tfoot><button type="button" class="btn btn-light"><a href="/crear_equipo" style="color: black;">Crear Equipo</a></button></tfoot>
+            <thead> 
+                <tr>
+                    <th scope="col">Equipo</th>
+                    <th scope="col">Club</th>
+                    <th scope="col">Entrenador</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col"></th>
+                    
+                    
+                </tr>
+            </thead>
+        {% for e in equipos %}
+            <tbody>
+                <tr>
+                    <td>{{ e.equipo_nombre }}</td>
+                    <td>{{ e.club }}</td>
+                    <td>{{ e.entrenador }}</td>
+                    <td>{{ e.categoria }}</td>
+                    <td><button class="btn btn-light"><a href="/jugadores/{{ e.id }}" style="color: rgb(14, 9, 2);">Plantilla</a></button></td>
+                    <td><button class="btn btn-light"><a href="/partidos/{{ e.id }}" style="color: rgb(14, 9, 2);">Partidos</a></button></td>
+                   
+                </tr>
+            </tbody>
+        {% endfor %}
+     
+    </table>
+     
+</div>
+
+</html>
+
+{% endblock contenido %}
