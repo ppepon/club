@@ -25,7 +25,7 @@ SECRET_KEY = 'nf_oe7gek(q&8!a(qxq_c04phb7cup1@4fif^il8vs*x-hugc)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['clubfutbolapp.herokuapp.com', '127.0.0.1', 'gestionteam.herokuapp.com']
+ALLOWED_HOSTS = ['gestionfut.herokuapp.com', 'clubfutbolapp.herokuapp.com', '127.0.0.1']
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -87,8 +87,12 @@ WSGI_APPLICATION = 'ClubFutbol.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'demeodmut4bqgc',
+        'USER': 'iuojvokyodcxnk',
+        'PASSWORD': '0b29e33ffb8ead067917ce6a874fbcb9befec84ebe88d2797eff3c0ef61002a5',
+        'HOST': 'ec2-50-19-32-202.compute-1.amazonaws.com',
+        'PORT':5432,
     }
 }
 
